@@ -1,0 +1,12 @@
+.searchbar {
+  width: 70%;
+  margin: 30px;
+  height: 2em;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.main {
+  justify-content: center;
+  align-items: center;
+}
