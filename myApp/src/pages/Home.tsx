@@ -10,20 +10,20 @@ import {
   IonList,
   IonItem,
   IonMenuButton,
-  IonIcon,
   IonLabel,
+  IonModal,
 } from "@ionic/react";
 import "./Home.css";
-import { authStore, placeStore } from "../stores/store";
+import { authStore, placeStore, appStore } from "../stores/store";
 import { getAuth } from "firebase/auth";
 import React, { useEffect } from "react";
 import axios from "axios";
 import PlaceList from "../components/PlaceList";
 
-import { addTestData, addTestData2 } from "../firebaseConfig";
+import { addTestData2 } from "../firebaseConfig";
 const Home: React.FC = () => {
   const places: any = placeStore.useState((s) => s.places);
-  const geoedPlaces: any = placeStore.useState((s) => s.geoedPlaces);
+
   const loggedInUser = authStore.useState((s) => s.loggedInUser);
   const auth = getAuth();
   const logout = async () => {
@@ -42,6 +42,10 @@ const Home: React.FC = () => {
       return;
     });
   }, []);
+
+  const popUp = () => {
+    console.log("HIIII");
+  };
 
   // use geo api to add lat lng to places data and set it to a new state called GeoedPlaces
 
@@ -92,7 +96,6 @@ const Home: React.FC = () => {
 
           <IonContent>
             <div className="main">
-              <IonButton onClick={addTestData2}>Add test data</IonButton>
               <PlaceList />
             </div>
           </IonContent>

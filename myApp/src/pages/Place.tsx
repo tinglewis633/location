@@ -12,13 +12,13 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../theme/Place.css";
-import { addTestData } from "../firebaseConfig";
+import { addTestData2 } from "../firebaseConfig";
 import { placeStore } from "../stores/store";
 
 const Place: React.FC = () => {
   const places = placeStore.useState((s) => s.places);
   useEffect(() => {
-    addTestData().then((data) => {
+    addTestData2().then((data) => {
       console.log("DATAAA", data);
       placeStore.update((s: any) => {
         s.places = data;
@@ -39,14 +39,12 @@ const Place: React.FC = () => {
 
   const hoursArr = [];
   //reformat the hours data
-  for (const day in hours) {
-    hoursArr.push(day + ":  " + hours[day]);
-  }
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonButton color="black" slot="start">
+          <IonButton key={id} color="black" slot="start">
             <IonBackButton defaultHref="/home"></IonBackButton>
           </IonButton>
           <IonTitle>Place Info</IonTitle>
@@ -68,12 +66,7 @@ const Place: React.FC = () => {
               <li>Busniess Name: {name} </li>
               <li>Address: {address} </li>
               <li>Website: {website_url} </li>
-              <li>
-                Hours:
-                {hoursArr.map((hour) => (
-                  <p key={hour.slice(0, 3)}>{hour}</p>
-                ))}
-              </li>
+              <li>Hours: {hours}</li>
             </ul>
           </div>
         </div>

@@ -17,6 +17,7 @@ import {
   getDoc,
   getDocs,
   setDoc,
+  deleteDoc,
 } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -92,20 +93,6 @@ export function loginFacebook() {
     });
 }
 
-export async function addTestData() {
-  const db = getFirestore();
-  const docRef = doc(db, "Places", "Places");
-  const docSnap = await getDoc(docRef);
-
-  if (docSnap.exists()) {
-    return docSnap.data().places;
-  } else {
-    // doc.data() will be undefined in this case
-    console.log("No such document!");
-    return false;
-  }
-}
-
 export async function addTestData2() {
   const db = getFirestore();
   const dataArr: any = [];
@@ -116,7 +103,7 @@ export async function addTestData2() {
   return dataArr;
 }
 
-export async function addPlaceData(formDoc:any) {
+export async function addPlaceData(formDoc: any) {
   const db = getFirestore();
   const docRef = await addDoc(collection(db, "Places"), {
     formDoc,
@@ -125,4 +112,21 @@ export async function addPlaceData(formDoc:any) {
     ...formDoc,
     id: docRef.id,
   });
+}
+
+export async function editPlaceData(formDoc: any, id: any) {
+  const db = getFirestore();
+
+  await setDoc(doc(db, "Places", id), {
+    ...formDoc,
+    id,
+  });
+  window.location.href = "/home";
+}
+
+export async function deletePlaceData(id: any) {
+  const db = getFirestore();
+
+  await deleteDoc(doc(db, "Places", id));
+  window.location.href = "/home";
 }

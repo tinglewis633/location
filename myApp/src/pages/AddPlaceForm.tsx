@@ -11,8 +11,10 @@ import {
   IonText,
   IonTitle,
   IonToolbar,
+  IonBackButton,
 } from "@ionic/react";
 import "./Home.css";
+
 import { addPlaceFormStore, placeStore } from "../stores/store";
 import { getAuth } from "firebase/auth";
 import React, { useEffect } from "react";
@@ -29,13 +31,17 @@ const AddPlaceForm: React.FC = () => {
     });
   };
 
-  function submitForm() {
-    addPlaceData(formDoc);
+  async function submitForm() {
+    await addPlaceData(formDoc);
+    window.location.href = "/home";
   }
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButton color="black" slot="start">
+            <IonBackButton defaultHref="/home"></IonBackButton>
+          </IonButton>
           <IonTitle>Please add place info</IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -69,7 +75,7 @@ const AddPlaceForm: React.FC = () => {
             className="form"
             placeholder="Enter place Website URL"
             onIonChange={(e: any) =>
-              updateFormDoc(e.target.value, "websiteURL")
+              updateFormDoc(e.target.value, "website_url")
             }
           ></IonInput>
         </IonItem>
@@ -80,7 +86,7 @@ const AddPlaceForm: React.FC = () => {
           <IonInput
             className="form"
             placeholder="Enter place Logo URL"
-            onIonChange={(e: any) => updateFormDoc(e.target.value, "logoURL")}
+            onIonChange={(e: any) => updateFormDoc(e.target.value, "logo_url")}
           ></IonInput>
         </IonItem>
         <br />
@@ -88,9 +94,7 @@ const AddPlaceForm: React.FC = () => {
         <br /> <br />
         <IonItem>
           <IonInput
-            onIonChange={(e: any) =>
-              updateFormDoc(e.target.value, "mondayHours")
-            }
+            onIonChange={(e: any) => updateFormDoc(e.target.value, "hours")}
             className="form"
             placeholder="Enter place hours"
           ></IonInput>

@@ -1,0 +1,25 @@
+.edit-btn {
+  color: rgb(172, 171, 171);
+  position: absolute;
+  top: 0px;
+  right: 1em;
+}
+
+.delete-btn {
+  color: rgb(172, 171, 171);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.delete-btn:hover {
+  cursor: pointer;
+}
+
+.confirm-component {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

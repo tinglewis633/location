@@ -13,6 +13,7 @@ import Place from "./pages/Place";
 import Menu from "./pages/Menu";
 import Register from "./pages/Register";
 import AddPlaceForm from "./pages/AddPlaceForm";
+import EditPlaceForm from "./pages/EditPlaceForm";
 import { useEffect } from "react";
 
 /* Core CSS required for Ionic components to work properly */
@@ -82,6 +83,7 @@ const App: React.FC = () => {
             <Redirect from="/" to="/home" exact />
             <Redirect from="/register" to="/home" exact />
             <Route path="/places/:id" component={Place} exact />
+            <Route path="/edit/place/:id" component={EditPlaceForm} exact />
             <Route path="/add-place" component={AddPlaceForm} exact />
             <Route path="/menu" component={Menu} exact />
             <Route render={() => <Redirect to="/home" />} />

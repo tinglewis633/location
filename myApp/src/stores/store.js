@@ -14,14 +14,15 @@ export const placeStore = new Store({
 
 export const appStore = new Store({
   loading: true,
+  formId: "",
 });
 
 export const addPlaceFormStore = new Store({
   formDoc: {
     name: "",
     address: "",
-    websiteURL: "",
-    logoURL: "",
-    mondayHours: "",
+    website_url: "",
+    logo_url: "",
+    hours: "",
   },
 });
